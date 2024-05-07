@@ -18,7 +18,7 @@ import java.io.InputStream;
 public class BaseTest {
 
     protected WebDriver driver;
-    private Object getDriver() {
+    public Object getDriver() {
         return driver;
     }
 

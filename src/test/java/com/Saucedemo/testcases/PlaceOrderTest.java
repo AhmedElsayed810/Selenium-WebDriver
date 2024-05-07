@@ -8,6 +8,7 @@ import com.Saucedemo.pages.Cart.Checkout.Overview.OverviewPage;
 import com.Saucedemo.pages.Cart.Checkout.Overview.ThankYou.ThankYouPage;
 import com.Saucedemo.pages.Login.LoginPage;
 import com.Saucedemo.pages.Products.ProductsPage;
+import io.cucumber.java.en.Given;
 import io.qameta.allure.Feature;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -25,6 +26,7 @@ public class PlaceOrderTest extends BaseTest {
     private ThankYouPage thankYouPage;
 
     @Test(dataProvider = "loginData", description = "Check That User Able To Place Order")
+
     public void productPlaceOrderTest(String username, String password) {
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
@@ -36,10 +38,15 @@ public class PlaceOrderTest extends BaseTest {
         loginPage.login(username, password);
 
         productsPage.addMostExpensiveTwoProductsToCart();
+
         productsPage.navigateToCart();
+
         cartPage.navigateToCheckoutPage();
+
         checkoutPage.insertCheckoutInformationAndContinue("Ahmed", "Elsayed", "42");
+
         overviewPage.finishOrder();
+
         thankYouPage.assertingTheThankYouAndTheOrderHasBeenDispatchedMessagesAreDisplayed();
     }
 
